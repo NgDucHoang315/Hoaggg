@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MoingayyeuLuyenthem1chut</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffb6c1; /* Màu hồng */
+            overflow: hidden; /* Ngăn chặn thanh cuộn */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .text {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            font-size: 27px; /* Kích thước font chữ */
+            margin: 20px 0; /* Khoảng cách giữa các dòng chữ */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            top: 50%; /* Đưa trái tim lên giữa theo chiều dọc */
+           left: 50%; /* Đưa trái tim ra giữa theo chiều ngang */
+         transform: translate(-50%, -50%); /* Dịch chuyển trái tim để căn giữa hoàn toàn */
+        }
+
+        .yourImage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; /* điều chỉnh kích thước hình ảnh của bạn tại đây */
+            height: auto;
+            opacity: 0; /* Ẩn ảnh ban đầu */
+            transition: opacity 0.5s ease-in-out; /* Hiệu ứng hiện ra */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="text">Hiii em😁</p>
+        <p class="text hidden">Ngồi đau cổ waaa để viết cái này tặng em :3</p>
+        <p class="text hidden">Nhớ nghe hết đoạn nhạc nhóoo</p>
+        <p class="text hidden">Mong rằng có chút này có thể khiến em bớt mệt mỏi và vui vẻ hơnnnnn</p>
+        <p class="text">Luôn cười em nhéee😘</p>
+        <p class="text">Tại em cười xing lắm óooo</p>
+        <p class="text hidden">Yêu em 💕</p>
+    </div>
+    <audio id="audioPlayer" autoplay loop>
+      <source src="Html/y2meta.net_320kbps-hybs-tip-toe-speed-up.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    
+    <style>
+      /* Ẩn thanh điều khiển chỉ trên các trình duyệt iPhone */
+      @supports (-webkit-touch-callout: none) {
+        #audioPlayer {
+          display: none;
+        }
+      }
+    </style>
+    
+    <img class="heart" src="heart1.png" alt="Heart">
+    <img class="heart" src="heart2.png" alt="Heart">
+    <img class="heart" src="heart3.png" alt="Heart">
+    <img class="heart" src="heart4.png" alt="Heart">
+    <img class="heart" src="heart5.png" alt="Heart">
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const texts = document.querySelectorAll(".text");
+            const hearts = document.querySelectorAll(".heart");
+            const yourImage = document.querySelector(".yourImage");
+
+            let delayAppearText = 100; // milliseconds (50 seconds)
+            let delayAppearHeart = 900// milliseconds (1 minute)
+            let delayAppearImage = 200 + (texts.length * 1000); // milliseconds
+
+            function fadeInText(index) {
+                if (index < texts.length) {
+                    setTimeout(() => {
+                        texts[index].classList.remove("hidden");
+                        texts[index].style.opacity = 1;
+                        if (index < texts.length - 1) {
+                            fadeOutText(index);
+                        } else {
+                            fadeInImage();
+                        }
+                        fadeInText(index + 1);
+                    }, delayAppearText);
+                    delayAppearText += 3900; // Tăng thời gian trễ cho đoạn tiếp theo
+                }
+            }
+
+            function fadeOutText(index) {
+                setTimeout(() => {
+                    texts[index].style.opacity = 0;
+                    setTimeout(() => {
+                        texts[index].classList.add("hidden");
+                    }, 500); // Đảm bảo rằng đoạn văn bản đã biến mất trước khi xuất hiện đoạn tiếp theo
+                }, 3700); // Biến mất sau 3 giây
+            }
+
+            function fadeInHearts() {
+                hearts.forEach((heart, index) => {
+                    setTimeout(() => {
+                        heart.style.opacity = 1;
+                        heart.style.transform = "scale(2)";
+                    }, 1000 * index);
+                });
+            }
+
+            function fadeInImage() {
+                setTimeout(() => {
+                    yourImage.style.opacity = 1;
+                    fadeInHearts();
+                }, delayAppearImage);
+            }
+
+            setTimeout(() => {
+                fadeInText(0);
+            }, 0); // Delay initial appearance
+        });
+    </script>
+
+    <img class="yourImage" src="lUYEN.jpg" alt="Your Image">
+</body>
+</html>
